@@ -1,0 +1,18 @@
+
+<p>
+  <strong>Title:</strong>
+  <%= @type.name %>
+</p>
+ 
+<p>
+  <strong>Text:</strong>
+  <%= @type.description %>
+</p>
+
+<p> 
+  <% @type.exercises.each do |ex| %>
+          <%= ex.name %>
+  <% end %>
+</p>
+
+<%= link_to 'Back', types_path %>

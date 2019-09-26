@@ -1,0 +1,50 @@
+<%= form_with(model: @exercise, local: true) do |form| %>
+ 
+  <% if @exercise.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@exercise.errors.count, "error") %> prohibited
+        this exercise from being saved:
+      </h2>
+
+      <ul>
+        <% @exercise.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= form.label :text %><br>
+    <%= form.text_area :description %>
+  </p>
+  <p>
+    <%= form.label :video %><br>
+    <%= form.file_field :video %>
+  
+  </p>
+  <p>
+    <video controls true width="320" height="240"></video>
+  </p>
+  <h1>Listing Types</h1>
+
+  <div>
+    <%= collection_check_boxes :exercise, :type_ids, Type.all, :id, :name do |b| %>
+      <div class="collection-check-box">
+        <%= b.check_box %>
+        <%= b.label %>
+      </div>
+    <% end %>
+  </div> 
+  
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>

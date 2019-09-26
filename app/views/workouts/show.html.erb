@@ -1,0 +1,22 @@
+
+<p>
+  <strong>Title:</strong>
+  <%= @workout.name %>
+</p>
+ 
+<p>
+  <strong>Text:</strong>
+  <%= @workout.description %>
+</p>
+
+<p> 
+  <% @workout.exercises.each do |ex| %>
+    <li> 
+      <%= ex.name %> 
+      <%= video_tag url_for(ex.video), size: '150x150', :controls => true if ex.video.attached? %>
+    </li>
+  <% end %>
+    
+</p>
+
+<%= link_to 'Back', workouts_path %>

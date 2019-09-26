@@ -1,0 +1,29 @@
+
+<p>
+  <strong>Title:</strong>
+  <%= @exercise.name %>
+</p>
+ 
+<p>
+  <strong>Text:</strong>
+  <%= @exercise.description %>
+</p>
+
+<p>
+  <strong>Types:</strong> 
+  
+  <% @exercise.types.each do |type| %>
+      <%= type.name %>
+  <% end %>
+</p>
+
+<p>
+  <% if @exercise.video.previewable? %>
+    
+    <%= video_tag "#{url_for(@exercise.video)}", size: '420x240', :controls => true if @exercise.video.attached? %>
+  
+  <% end %>
+  
+</p>
+
+<%= link_to 'Back', exercises_path %>
