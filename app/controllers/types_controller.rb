@@ -4,7 +4,13 @@ class TypesController < ApplicationController
   before_action :validate_type_id, :except => [:index, :new, :create]  
 
   def index
-    @type = Type.all
+    @type = Type.search(params[:search])
+    if params[:search] && !@type.blank?
+      redirect_to type_path(@type)
+    else
+      flash[:success] = "Not a valid Path" unless params[:search].blank?
+      @type = Type.all
+    end
   end
   
   def show
@@ -52,7 +58,7 @@ class TypesController < ApplicationController
   end
   
   def type_params
-    params.require(:type).permit(:name, :description)
+    params.require(:type).permit(:name, :description, :search)
   end
 
 end

@@ -11,7 +11,10 @@
 
 <p> 
   <% @type.exercises.each do |ex| %>
+        <li>
           <%= ex.name %>
+          <%= video_tag url_for(ex.video), size: '150x150', :controls => true if ex.video.attached? %>
+        </li>
   <% end %>
 </p>
 

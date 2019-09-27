@@ -1,25 +1,38 @@
-<li>
-  <% if user_signed_in? %>
-    <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
-  <% else %>
-    <%= link_to('Login', new_user_session_path) %>  
-  <% end %>
-</li>
+<nav class="navbar navbar-light bg-light">
+  <li>
+    <% if user_signed_in? %>
+      <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+    <% else %>
+     <%= link_to('Login', new_user_session_path) %>  
+    <% end %>
+  </li>
+</nav>
 
-<li>
-  <%= link_to 'All Workouts', workouts_path %>
-</li>
+<nav class="navbar navbar-light bg-light">
+  <li>
+    <%= link_to 'All Workouts', workouts_path %>
+  </li>
+</nav>
 
 <%if current_user.admin? %>
+<nav class="navbar navbar-light bg-light">
   <li>
     <%= link_to 'New exercise', new_exercise_path %>
   </li>
+</nav>
+
+<nav class="navbar navbar-light bg-light">
   <li>
     <%= link_to 'All Types', types_path %>
   </li>
+</nav>
+
+<nav class="navbar navbar-light bg-light">
   <li>
     <%= link_to 'Assign Workout to user', new_users_workout_path %>
   </li>
+</nav>
+
 <% end %>
 
 <h1>Listing Exericses</h1>

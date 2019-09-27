@@ -5,7 +5,8 @@ class WorkoutsController < ApplicationController
   
   def index
     if current_user.admin?
-      @workout = Workout.all
+      #@workout = Workout.all
+      @workout  = Workout.paginate(:page => params[:page], :per_page=>5)
     else 
       @workout = current_user.workouts
     end
@@ -47,7 +48,7 @@ class WorkoutsController < ApplicationController
 
   private
 
-  def validate_exercise_id
+  def validate_workout_id
     @workout = Workout.find_by(id: params[:id])
     redirect_to workouts_path if @workout.blank?
   end

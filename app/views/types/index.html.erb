@@ -1,35 +1,57 @@
-<% if user_signed_in? %>
-  <li>
-    <%= link_to('Logout', destroy_user_session_path, method: :delete) %>  
-  </li>
-<% else %>
-  <li>
-    <%= link_to('Login', new_user_session_path) %>  
-  </li>
-<% end %>
+<nav class="navbar navbar-light bg-light">
+  <% if user_signed_in? %>
+    <li>
+     <%= link_to('Logout', destroy_user_session_path, method: :delete) %>  
+    </li>
+  <% else %>
+    <li>
+     <%= link_to('Login', new_user_session_path) %>  
+    </li>
+  <% end %>
+</nav>
 
 <%if current_user.admin? %>
-  <li>
-    <%= link_to 'All Exercises', exercises_path %>
-  </li>
-  
-  <li>
-    <%= link_to 'All Types', types_path %>
-  </li>
-  <li>
-    <%= link_to 'Assign Workout to user', new_users_workout_path %>
-  </li>
-  <li>
-    <%= link_to 'New Type', new_type_path %>
-  </li>
-  <li>
-    <%= link_to 'New Workout', new_workout_path %>
-  </li>
-<% end -%>
+  <nav class="navbar navbar-light bg-light">
+    <li>
+      <%= link_to 'All Exercises', exercises_path %>
+    </li>
+  </nav>
 
+  <nav class="navbar navbar-light bg-light">
+    <li>
+      <%= link_to 'All Types', types_path %>
+    </li>
+  </nav>
+
+  <nav class="navbar navbar-light bg-light">
+    <li>
+      <%= link_to 'Assign Workout to user', new_users_workout_path %>
+    </li>
+  </nav>
+
+  <nav class="navbar navbar-light bg-light">
+    <li>
+      <%= link_to 'New Type', new_type_path %>
+    </li>
+  </nav>
+
+  <nav class="navbar navbar-light bg-light">
+    <li>
+      <%= link_to 'New Workout', new_workout_path %>
+    </li>
+  </nav>
+<% end -%>
+  
 
 <h1>Listing Types</h1>
 
+<%= form_tag types_path, :method => 'get' do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", :name => nil %>
+    </p>
+  <% end %>
+  
 <table>
   <tr>
     <th>Title</th>  

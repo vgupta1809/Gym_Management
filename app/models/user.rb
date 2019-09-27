@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :exercises
   
   # to get the trainer workouts
-  has_many :trainer_workouts, class_name: 'Workout', foreign_key: 'user_id'
+  #has_many :trainer_workouts, class_name: 'Workout', foreign_key: 'user_id'
   
   # to find normal users workout
   has_many :users_workouts
