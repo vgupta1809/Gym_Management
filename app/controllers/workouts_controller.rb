@@ -1,7 +1,7 @@
 class WorkoutsController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_trainer, :except => [:index, :show]
-  before_action :validate_workout_id, :except => [:index, :new, :create]  
+  before_action :validate_workout_id, :except => [:index, :new, :create, :type_exercises]  
   
   def index
     if current_user.admin?
@@ -16,11 +16,13 @@ class WorkoutsController < ApplicationController
   end
 
   def new
-    @exercises = Exercise.all
+    @types = Type.all
     @workout = current_user.workouts.build
+    @exercises = Exercise.all
   end
 
   def edit
+    @types = Type.all
     @exercises = Exercise.all
   end
 
@@ -44,6 +46,20 @@ class WorkoutsController < ApplicationController
   def destroy   
     @workout.destroy
     redirect_to workouts_path
+  end
+
+  def type_exercises
+    if params[:type_id].present?
+      @type = Type.find_by(id: params[:type_id])
+      @exercises = @type.exercises
+    else
+      @exercises = Exercise.all
+    end
+    
+    respond_to do |format|
+      format.html
+      format.json { render json: { "exercises" => @exercises} }
+    end
   end
 
   private

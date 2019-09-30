@@ -4,7 +4,8 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p>You got a new Workout from <%= @user.email %>!</p>
+    <p>You got a new Workout from one of the Trainer!</p>
+    <p>Here is the link:- <%= link_to 'Click Here', @link , target: :_blank%> </p>
     
     
   </body>

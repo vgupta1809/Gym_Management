@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  get '/workouts/type_exercises' => "workouts#type_exercises"
   resources :exercises
   resources :workouts
   resources :types

@@ -26,12 +26,23 @@
   </p>
 
   <div>
-  <%= collection_check_boxes :workout, :exercise_ids, Exercise.all, :id, :name do |b| %>
-      <div class="collection-check-box">
-      <%= b.check_box %>
-      <%= b.label %>
-      </div>
-    <% end %>
+    <p>Please select the Type :- 
+    <%=  select_tag "type", options_from_collection_for_select(@types, "id", "name"), :include_blank => true %>
+    </p>
+  </div> 
+
+  <div>
+    <%# byebug %>
+
+    <p>Please select the Exercises :- </p>
+    <div id = "checkbox_ids">
+      <%= collection_check_boxes :workout, :exercise_ids, @exercises, :id, :name do |b| %>
+        <div class="collection-check-box">
+        <%= b.check_box %>
+        <%= b.label %>
+        </div>
+      <% end %>
+    </div>
   </div> 
   
   <p>

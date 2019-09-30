@@ -11,13 +11,13 @@ class UsersWorkoutsController < ApplicationController
     @user = User.find(params[:user])
     redirect_to workouts_path if @user.blank?
     @workout_ids = params[:user_workout][:workout_ids]
-   
     @workout_ids.each do |w|
       next if w.blank?
       @user_workout = @user.users_workouts.new(workout_id: w)
       @user_workout.save
     end
-    WorkoutMailer.with(user: @user).new_workout_email.deliver_later
+    @url = workouts_url
+    WorkoutMailer.with(user: @user).new_workout_email(@url).deliver_now
 
     redirect_to workouts_path      
   end
