@@ -51,7 +51,7 @@ group :test do
 end
 gem 'devise', '~> 4.2'
 gem 'rubocop', '~> 0.74.0', require: false
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
